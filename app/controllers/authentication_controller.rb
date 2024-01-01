@@ -13,4 +13,24 @@ class AuthenticationController < ApplicationController
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
   end
+
+  def logout
+    header = request.headers['Authorization']
+    token = header.split.last if header.present?
+
+    if token
+      # Add the token to the set of invalidated tokens
+      invalidate_token(token)
+      render json: { message: 'Logout successful. Token invalidated.' }, status: :ok
+    else
+      render json: { error: 'Token not found' }, status: :bad_request
+    end
+  end
+
+  private
+
+  def invalidate_token(token)
+    $invalid_tokens ||= Set.new
+    $invalid_tokens << token
+  end
 end
