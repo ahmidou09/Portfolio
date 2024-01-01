@@ -59,9 +59,9 @@ class ProjectsController < ApplicationController
   end
 
   def authorize_admin_access
-    # Check if the current user is an admin
-    return if @current_user&.admin?
+    # Check if the current user is present (authenticated)
+    return if @current_user.present? && @current_user.admin?
 
-    render json: { error: 'Unauthorized access' }, status: :unauthorized
+    render json: { error: 'Authentication and admin access required' }, status: :unauthorized
   end
 end
