@@ -1,12 +1,12 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: portfolio_postgre
+    databaseName: portfolio_postgre_vkki
+    user: portfolio_postgre_vkki_user
     plan: free
 
 services:
   - type: web
-    name: mysite
+    name: portfolio
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
@@ -15,7 +15,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: portfolio_postgre
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
