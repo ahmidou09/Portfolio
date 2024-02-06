@@ -6,7 +6,7 @@ databases:
 
 services:
   - type: web
-    name: my_portfolio
+    name: mehdi_portfolio
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
