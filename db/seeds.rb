@@ -9,6 +9,7 @@
 #   end
 
 User.create(username: 'user_1', password: '123456')
+User.create(username: 'user_admin', password: '123456', role: 'admin')
 
 # Clear existing records
 Project.destroy_all
