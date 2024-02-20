@@ -65,3 +65,4 @@ class ProjectsController < ApplicationController
     render json: { error: 'Authentication and admin access required' }, status: :unauthorized
   end
 end
+
